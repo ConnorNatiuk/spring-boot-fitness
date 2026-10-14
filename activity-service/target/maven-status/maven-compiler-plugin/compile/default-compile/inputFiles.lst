@@ -1,9 +1,0 @@
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\ActivityServiceApplication.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\config\MongoConfig.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\controller\ActivityController.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\dto\ActivityRequest.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\dto\ActivityResponse.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\model\Activity.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\model\ActivityType.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\repository\ActivityRepository.java
-C:\Development\spring-boot-fitness\activity-service\src\main\java\com\natiuk\activity_service\service\ActivityService.java
