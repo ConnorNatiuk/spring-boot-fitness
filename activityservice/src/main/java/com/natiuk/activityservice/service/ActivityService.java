@@ -1,5 +1,8 @@
 package com.natiuk.activityservice.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.natiuk.activityservice.dto.ActivityRequest;
@@ -28,6 +31,19 @@ public class ActivityService {
         
         Activity savedActivity = activityRepository.save(activity);
         return mapToResponse(savedActivity);
+    }
+
+    public List<ActivityResponse> getActivities(String userId) {
+        List<Activity> activities = activityRepository.findByUserId(userId);
+        return activities.stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+    public ActivityResponse getActivityById(String activityId) {
+        return activityRepository.findById(activityId)
+                .map(this::mapToResponse)
+                .orElseThrow(() -> new RuntimeException("No activity found"));
     }
 
     private ActivityResponse mapToResponse(Activity activity) {
