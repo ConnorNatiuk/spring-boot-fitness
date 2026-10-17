@@ -7,7 +7,10 @@ import com.natiuk.userservice.dto.UserResponse;
 import com.natiuk.userservice.model.User;
 import com.natiuk.userservice.repository.UserRepository;
 
-@Service 
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j 
 public class UserService {
     
     private final UserRepository repository;
@@ -53,5 +56,10 @@ public class UserService {
         userResponse.setCreatedAt(user.getCreatedAt());
         userResponse.setUpdatedAt(user.getUpdatedAt());
         return userResponse;
+    }
+
+    public Boolean existByUserId(String userId) {
+        log.info("Calling User Validation API for userId: {}", userId);
+        return repository.existsById(userId);
     }
 }
