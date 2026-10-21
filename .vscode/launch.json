@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ai-service",
+            "request": "launch",
+            "mainClass": "com.natiuk.aiservice.AiserviceApplication",
+            "projectName": "aiservice",
+            "envFile": "${workspaceFolder}/aiservice/.env"
+        }
+    ]
+}
