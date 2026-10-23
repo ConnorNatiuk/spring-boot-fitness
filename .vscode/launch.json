@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ConfigserverApplication",
+            "request": "launch",
+            "mainClass": "com.natiuk.configserver.ConfigserverApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "ai-service",
             "request": "launch",
             "mainClass": "com.natiuk.aiservice.AiserviceApplication",
