@@ -1,8 +1,0 @@
-com\natiuk\userservice\dto\RegisterRequest.class
-com\natiuk\userservice\model\UserRole.class
-com\natiuk\userservice\controller\UserController.class
-com\natiuk\userservice\dto\UserResponse.class
-com\natiuk\userservice\service\UserService.class
-com\natiuk\userservice\model\User.class
-com\natiuk\userservice\repository\UserRepository.class
-com\natiuk\userservice\FitnessApplication.class
