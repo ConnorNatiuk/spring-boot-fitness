@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GatewayApplication",
+            "request": "launch",
+            "mainClass": "com.natiuk.gateway.GatewayApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "ConfigserverApplication",
             "request": "launch",
             "mainClass": "com.natiuk.configserver.ConfigserverApplication",
