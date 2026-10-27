@@ -1,4 +1,4 @@
-package com.natiuk.activityservice.config;
+package com.natiuk.gateway.user;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

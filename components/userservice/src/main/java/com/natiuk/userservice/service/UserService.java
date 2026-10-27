@@ -23,6 +23,10 @@ public class UserService {
 
         if (repository.existsByEmail(request.getEmail())) {
             User existingUser = repository.findByEmail(request.getEmail());
+            if (existingUser.getKeycloakId() == null && request.getKeycloakId() != null) {
+                existingUser.setKeycloakId(request.getKeycloakId());
+                existingUser = repository.save(existingUser);
+            }
             UserResponse userResponse = new UserResponse();
             userResponse.setId(existingUser.getId());
             userResponse.setKeycloakId(existingUser.getKeycloakId());
@@ -38,6 +42,7 @@ public class UserService {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
+        user.setKeycloakId(request.getKeycloakId());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         

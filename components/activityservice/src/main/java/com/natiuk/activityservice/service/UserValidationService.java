@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserValidationService {
     private final WebClient userServiceWebClient;
     
-    public UserService(WebClient userServiceWebClient) {
+    public UserValidationService(WebClient userServiceWebClient) {
         this.userServiceWebClient = userServiceWebClient;
     }
 
