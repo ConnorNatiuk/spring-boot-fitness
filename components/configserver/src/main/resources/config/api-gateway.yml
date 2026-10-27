@@ -1,4 +1,9 @@
-spring:    
+spring:
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    jwk-set-uri: http://localhost:8181/realms/fitnes-oauth2/protocol/openid-connect/certs
     cloud:
         gateway:
             server:
@@ -24,6 +29,7 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
+
 management:
     endpoints:
         web:
