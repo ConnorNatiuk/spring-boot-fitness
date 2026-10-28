@@ -21,7 +21,7 @@
             "request": "launch",
             "mainClass": "com.natiuk.aiservice.AiserviceApplication",
             "projectName": "aiservice",
-            "envFile": "${workspaceFolder}/aiservice/.env"
+            "envFile": "${workspaceFolder}/components/aiservice/.env"
         }
     ]
 }
