@@ -30,11 +30,15 @@ public class KeycloakUserSyncFilter implements WebFilter {
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         RegisterRequest registerRequest = getUserDetails(token);
 
-        if (userId == null) {
+        if (token == null) {
+            return chain.filter(exchange);
+        }
+
+        if (userId == null && registerRequest != null) {
             userId = registerRequest.getKeycloakId();
         }
 
-        if (userId != null && token != null) {
+        if (userId != null) {
             String finalUserId = userId;
             return userService.validateUser(userId)
                     .<Void>flatMap(exist -> {
@@ -61,6 +65,11 @@ public class KeycloakUserSyncFilter implements WebFilter {
     }
 
     private RegisterRequest getUserDetails(String token) {
+        if (token == null || !token.startsWith("Bearer ")) {
+            log.info("Returned null");
+            return null;
+        }
+        
         try {
             String tokenWithoutBearer = token.replace("Bearer ", "").trim();
             SignedJWT signedJWT = SignedJWT.parse(tokenWithoutBearer);
@@ -76,7 +85,7 @@ public class KeycloakUserSyncFilter implements WebFilter {
             return registerRequest;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn("Could not parse token", e);
             return null;
         }
     }
