@@ -23,6 +23,19 @@ spring:
                           uri: lb://AI-SERVICE
                           predicates:
                               - Path=/api/recommendations/**
+                    globalcors:
+                        cors-configurations:
+                            "[/**]":
+                                allowedOrigins:
+                                    - "http://localhost:5173"
+                                allowedMethods:
+                                    - GET
+                                    - POST
+                                    - PUT
+                                    - DELETE
+                                    - OPTIONS
+                                allowedHeaders:
+                                    - "*"
 server:
     port: 8080
 eureka:

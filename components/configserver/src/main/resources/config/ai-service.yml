@@ -7,6 +7,16 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          initial-interval: 5s
+          multiplier: 2
+          max-attempts: 3
+        concurrency: 1
+        prefetch: 1
 server:
   port: 8083
 eureka:
@@ -25,4 +35,4 @@ rabbitmq:
 gemini:
   api:
     url: ${GEMINI_API_URL}
-    key: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}

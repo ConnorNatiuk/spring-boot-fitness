@@ -1,7 +1,9 @@
-import React from 'react'
+import { Grid } from "@mui/material"
 
 export const ActivityList = () => {
   return (
-    <div>ActivityList</div>
+    <Grid>
+      
+    </Grid>
   )
 }
