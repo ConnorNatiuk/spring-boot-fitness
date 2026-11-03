@@ -2,21 +2,24 @@ import axios from "axios";
 
 const API_URL = 'http://localhost:8080/api';
 const api = axios.create({
-    baseURL:API_URL
+    baseURL: API_URL,
 });
 
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+
     if (token) {
-        config.headers.set("Authorization", `Bearer ${token}`);
+        config.headers.set('Authorization', `Bearer ${token}`);
     }
+
     if (userId) {
-        config.headers['X-User-ID'] = userId;
+        config.headers.set('X-User-ID', userId);
     }
+
     return config;
 });
 
 export const getActivities = () => api.get('/activities');
-export const addActivity = (activity) => api.post('/activities', activity);
+export const addActivity = (activity: Record<string, unknown>) => api.post('/activities', activity);
 export const getActivityDetail = (id: string) => api.get(`/recommendations/activity/${id}`);

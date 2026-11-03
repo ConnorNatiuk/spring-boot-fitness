@@ -1,15 +1,26 @@
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { addActivity } from '../services/api';
 
-export const ActivityForm = ({ onActivityAdded }) => {
+type ActivityFormProps = {
+  onActivityAdded: () => void;
+};
 
-  const [activity, setActivity] = useState({
+type ActivityState = {
+  type: string;
+  durationMinutes: string;
+  caloriesBurned: string;
+  additionalMetrics: Record<string, never>;
+};
+
+export const ActivityForm = ({ onActivityAdded }: ActivityFormProps) => {
+
+  const [activity, setActivity] = useState<ActivityState>({
       type: "RUNNING", durationMinutes: "", caloriesBurned: "",
       additionalMetrics: {}
-    })
+    });
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await addActivity(activity);
@@ -32,7 +43,7 @@ export const ActivityForm = ({ onActivityAdded }) => {
           <MenuItem value="LIFTING">Lifting</MenuItem>
         </Select>
       </FormControl>
-      <TextField fullWidth label="Duration (Minutes)" type="number" sx={{ mb: 2 }} value={activity.duration}
+      <TextField fullWidth label="Duration (Minutes)" type="number" sx={{ mb: 2 }} value={activity.durationMinutes}
                   onChange={(e) => setActivity({...activity, durationMinutes: e.target.value})}/>
       <TextField fullWidth label="Calories Burned" type="number" sx={{ mb: 2 }} value={activity.caloriesBurned}
                   onChange={(e) => setActivity({...activity, caloriesBurned: e.target.value})}/>

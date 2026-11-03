@@ -2,52 +2,78 @@ import { Box, Button } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext, type IAuthContext } from "react-oauth2-code-pkce"
 import { useDispatch } from "react-redux"
-import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router"
-import { setCredentials } from "./store/authSlice"
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router"
+import { logout, setCredentials } from "./store/authSlice"
 import { ActivityForm } from "./components/ActivityForm"
 import { ActivityList } from "./components/ActivityList"
 import { ActivityDetail } from "./components/ActivityDetail"
+import "./App.css"
 
 const ActivitiesPage = () => {
+  const { logOut } = useContext<IAuthContext>(AuthContext);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    dispatch(logout());
+    logOut();
+  };
+
   return (
-    <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
-      <ActivityForm onActivityAdded = {() => window.location.reload()} />
-      <ActivityList />
-    </Box>
+    <div className="fitness-page">
+      <div className="fitness-header">
+        <div>
+          <p className="eyebrow">Workout tracker</p>
+          <h1>My fitness dashboard</h1>
+        </div>
+        <Button className="ghost-button" variant="contained" color="secondary" onClick={handleLogout}>
+          Logout
+        </Button>
+      </div>
+      <Box component="section" className="fitness-panel">
+        <ActivityForm onActivityAdded = {() => window.location.reload()} />
+        <ActivityList />
+      </Box>
+    </div>
   );
 }
 
 function App() {
-  const {token, tokenData, logIn, logOut, loginInProgress } = useContext<IAuthContext>(AuthContext)
+  const {token, tokenData, logIn, loginInProgress } = useContext<IAuthContext>(AuthContext)
   const dispatch = useDispatch();
-  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
     if (token) {
       dispatch(setCredentials({token, user: tokenData}));
-      setAuthReady(true);
     }
   }, [token, tokenData, dispatch]);
 
   if (loginInProgress) return <div>Loading...</div>
-  if (!authReady) return <div>Redirecting to login...</div>
 
   return (
     <Router>
       {!token ? (
-        <Button variant="contained" sx={{ bgcolor: "dc004e" }}
-          onClick={() => {
-            logIn();
-          }}>LOGIN</Button>
-        ) : (
-          <Box component="section" sx={{ p: 2, border: '1px dashed grey' }}>
-            <Routes>
-              <Route path="/activities" element={<ActivitiesPage/>}/>
-              <Route path="/" element={<Navigate to="/activities" replace />}/>
-              <Route path="activities/:id" element={<ActivityDetail />}/>
-            </Routes>
-          </Box>
-        )}
+        <div className="auth-screen">
+          <div className="auth-card">
+            <p className="eyebrow">Stay active</p>
+            <h2>Welcome back</h2>
+            <p>Track workouts, stay consistent, and keep your momentum going.</p>
+            <Button className="primary-button" variant="contained"
+              onClick={() => {
+                logIn();
+              }}>Login</Button>
+          </div>
+        </div>
+      ) : (
+        <Box component="section" className="fitness-shell">
+          <Routes>
+            <Route path="/activities" element={<ActivitiesPage/>}/>
+            <Route path="/" element={<Navigate to="/activities" replace />}/>
+            <Route path="activities/:id" element={<ActivityDetail />}/>
+          </Routes>
+        </Box>
+      )}
     </Router>
   )
 }
