@@ -3,5 +3,5 @@ spring:
         name: ai-service
     config:
         import:
-            - configserver:http://localhost:8888
-            - file:./aiservice/.env[.properties]
+            - "configserver:${CONFIG_SERVER_URL:http://localhost:8888}"
+            - "optional:file:./aiservice/.env[.properties]"

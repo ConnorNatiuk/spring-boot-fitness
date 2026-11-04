@@ -1,0 +1,63 @@
+# ---------- Secrets ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.p12
+
+# ---------- Maven build output ----------
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.jar
+*.war
+*.class
+*.log
+dependency-reduced-pom.xml
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+# ---------- Gradle (in case you use it anywhere) ----------
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ---------- IntelliJ IDEA ----------
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ---------- Eclipse / STS ----------
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+bin/
+
+# ---------- VS Code ----------
+.vscode/
+
+# ---------- NetBeans ----------
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ---------- OS files ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Misc ----------
+*.swp
+*~
+HELP.md
